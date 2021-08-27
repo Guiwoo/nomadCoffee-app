@@ -1,19 +1,31 @@
 import React, { useState } from "react";
-import { Text, View } from "react-native";
 import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
+import { NavigationContainer } from "@react-navigation/native";
+import TabBarNav from "./nav/TabBarNav";
+import { ApolloProvider } from "@apollo/client";
+import client, { isLoggedInVar, tokenVar } from "./apollo";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
   const readyToStart = () => setLoading(false);
-  const preload = () => {
+  const preloadAssets = () => {
     const fontsToLoad = [Ionicons.font];
     const fontPromises = fontsToLoad.map((font) => Font.loadAsync(font));
     const imagesToLoad = [require("./assets/nomadCoffee.png")];
     const imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));
     return Promise.all([...fontPromises, ...imagePromises]);
+  };
+  const preload = async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (token) {
+      isLoggedInVar(true);
+      tokenVar(token);
+    }
+    return preloadAssets;
   };
   if (loading) {
     return (
@@ -25,8 +37,10 @@ export default function App() {
     );
   }
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Nomad Coffee</Text>
-    </View>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <TabBarNav />
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }
