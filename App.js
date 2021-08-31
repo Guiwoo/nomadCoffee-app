@@ -15,7 +15,10 @@ export default function App() {
   const preloadAssets = () => {
     const fontsToLoad = [Ionicons.font];
     const fontPromises = fontsToLoad.map((font) => Font.loadAsync(font));
-    const imagesToLoad = [require("./assets/nomadCoffee.png")];
+    const imagesToLoad = [
+      [require("./assets/nomadCoffee.png")],
+      [require("./assets/nomadCoffeeFont.png")],
+    ];
     const imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));
     return Promise.all([...fontPromises, ...imagePromises]);
   };

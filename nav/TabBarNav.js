@@ -1,12 +1,13 @@
-import React, { Profiler } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import Home from "../screen/Home";
 import Search from "../screen/Search";
 import Profile from "../screen/Profile";
 import { isLoggedInVar } from "../apollo";
-import MycoffeeShop from "../screen/MycoffeeShop";
 import { useReactiveVar } from "@apollo/client";
+import StackNav from "./StackNav";
+import { Image } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,18 +16,27 @@ const TabBarNav = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
+        headerStyle: {
+          backgroundColor: "#2c2c2c",
+          shadowColor: "#2c2c2c",
+        },
         tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: "#2c2c2c",
           borderTopColor: "rgba(255,255,255,0.3)",
         },
       }}
-      initialRouteName="Profile"
     >
       <Tab.Screen
         name="Home"
         options={{
+          headerTitle: () => (
+            <Image
+              style={{ maxHeight: 40, maxWidth: 300 }}
+              resizeMode="contain"
+              source={require("../assets/nomadCoffeeFont.png")}
+            />
+          ),
           tabBarIcon: () => (
             <Ionicons name={"home"} size={26} color={"white"} />
           ),
@@ -49,8 +59,9 @@ const TabBarNav = () => {
             <Ionicons name={"person"} size={26} color={"white"} />
           ),
         }}
-        component={isLoggedIn ? MycoffeeShop : Profile}
-      />
+      >
+        {() => (true ? <StackNav screenName={"MyProfile"} /> : <Profile />)}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };
