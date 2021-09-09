@@ -8,6 +8,7 @@ import { isLoggedInVar } from "../apollo";
 import { useReactiveVar } from "@apollo/client";
 import StackNav from "./StackNav";
 import { Image } from "react-native";
+import UploadTab from "./UploadTab";
 
 const Tab = createBottomTabNavigator();
 
@@ -53,6 +54,16 @@ const TabBarNav = () => {
         component={Search}
       />
       <Tab.Screen
+        name="Upload"
+        options={{
+          headerShown: false,
+          tabBarIcon: () => (
+            <Ionicons name={"cloud-upload-outline"} size={26} color={"white"} />
+          ),
+        }}
+        component={UploadTab}
+      />
+      <Tab.Screen
         name="Profile"
         options={{
           tabBarIcon: () => (
@@ -60,7 +71,9 @@ const TabBarNav = () => {
           ),
         }}
       >
-        {() => (true ? <StackNav screenName={"MyProfile"} /> : <Profile />)}
+        {() =>
+          isLoggedIn ? <StackNav screenName={"MyProfile"} /> : <Profile />
+        }
       </Tab.Screen>
     </Tab.Navigator>
   );

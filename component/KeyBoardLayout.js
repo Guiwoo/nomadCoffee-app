@@ -21,6 +21,7 @@ export default ({ children }) => {
             width: "100%",
           }}
           behavior="position"
+          keyboardVerticalOffset={100}
         >
           {children}
         </KeyboardAvoidingView>

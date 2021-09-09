@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import React from "react";
-import { Text, View } from "react-native";
-import styled from "styled-components/native";
+import { Text, TouchableOpacity, View } from "react-native";
+import { logUserOut } from "../apollo";
 import ScreenLayout from "../component/ScreenLayout";
 
 const ME_QUERY = gql`
@@ -21,6 +21,9 @@ export default () => {
   const { data, loading } = useQuery(ME_QUERY);
   return (
     <ScreenLayout loading={loading}>
+      <TouchableOpacity onPress={logUserOut}>
+        <Text style={{ color: "white" }}>Log out</Text>
+      </TouchableOpacity>
       <Text style={{ color: "white" }}>My Profile</Text>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <Text style={{ color: "white", fontWeight: "600" }}>My Shops</Text>

@@ -13,3 +13,9 @@
 # Challenge 15
 
     - Search Tab, Chage to header to input type
+
+# what do i need to do tomorrow
+
+    - use Hook form(do every single section do not just fill hole input)
+    - connect to mutation
+    - apollo server check if is possible to upload or not check on front-end first

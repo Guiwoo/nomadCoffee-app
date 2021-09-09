@@ -7,6 +7,9 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setContext } from "@apollo/client/link/context";
 import { offsetLimitPagination } from "@apollo/client/utilities";
+import { onError } from "@apollo/client/link/error";
+import { createUploadLink } from "apollo-upload-client";
+import { ApolloLink } from "@apollo/client/core";
 
 const TOKEN = "token";
 
@@ -22,8 +25,17 @@ export const logUserOut = async () => {
   await AsyncStorage.removeItem(TOKEN);
 };
 
-const httpLink = createHttpLink({
+const uploadHttpLink = createUploadLink({
   uri: "https://nomad-backend-guiwoo.herokuapp.com/graphql",
+});
+
+const onErrorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    console.log("graphql Error⭐️", graphQLErrors);
+  }
+  if (networkError) {
+    console.log("NetworkError❌", networkError);
+  }
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -36,7 +48,8 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  //link: authLink.concat(onErrorLink).concat(uploadHttpLink),
+  link: ApolloLink.from([authLink, uploadHttpLink]),
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
