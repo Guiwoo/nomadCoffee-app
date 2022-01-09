@@ -15,7 +15,7 @@ export default () => {
       screenOptions={{
         presentation: "card",
         headerStyle: {
-          backgroundColor: "#2c2c2c",
+          backgroundColor: "#875D78",
           shadowColor: "#2c2c2c",
         },
         headerBackTitle: false,

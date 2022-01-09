@@ -7,7 +7,7 @@ export default ({ loading, children }) => {
     <View
       style={{
         flex: 1,
-        backgroundColor: "#2c2c2c",
+        backgroundColor: "#74667F",
         justifyContent: "center",
         alignItems: "center",
       }}

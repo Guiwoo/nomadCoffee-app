@@ -18,12 +18,12 @@ const TabBarNav = () => {
     <Tab.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#2c2c2c",
-          shadowColor: "#2c2c2c",
+          backgroundColor: "#875D78",
+          shadowColor: "#A34E6E",
         },
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: "#2c2c2c",
+          backgroundColor: "#5c758a",
           borderTopColor: "rgba(255,255,255,0.3)",
         },
       }}

@@ -8,7 +8,7 @@ import styled from "styled-components/native";
 
 const Container = styled.View`
   flex: 1;
-  background-color: #2c2c2c;
+  background-color: #746680;
   padding: 30px;
 `;
 

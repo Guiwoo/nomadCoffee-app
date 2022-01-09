@@ -46,7 +46,7 @@ const SEARCH_COFFEE_SHOP = gql`
   }
 `;
 const Container = styled.View`
-  background-color: #2c2c2c;
+  background-color: #995372;
   margin-top: 20px;
   border: #2c2c2c;
   border-top-color: white;
@@ -86,7 +86,7 @@ export default ({ navigation }) => {
     });
   };
   const SearchInput = () => (
-    <View style={{ flex: 1, backgroundColor: "#2c2c2c" }}>
+    <View style={{ flex: 1, backgroundColor: "#875D78" }}>
       <Image
         style={{ maxHeight: 40, maxWidth: 300 }}
         resizeMode="contain"

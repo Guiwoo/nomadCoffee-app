@@ -14,7 +14,7 @@ const Input = styled.TextInput`
 `;
 
 const Button = styled.TouchableOpacity`
-  background-color: #abf0d1;
+  background-color: #498292;
   padding: 10px 10px;
   width: 100%;
   border-radius: 20px;

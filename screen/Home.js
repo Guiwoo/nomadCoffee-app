@@ -6,7 +6,7 @@ import HomeBox from "../component/Home/HomeBox";
 import ScreenLayout from "../component/ScreenLayout";
 
 const Container = styled.View`
-  background-color: #2c2c2c;
+  background-color: red;
   flex: 1;
   justify-content: center;
   align-items: center;
